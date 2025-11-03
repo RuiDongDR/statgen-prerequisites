@@ -23,6 +23,11 @@ parts:
   - caption: Correlation Between Individuals
     chapters:
       - file: genetic_relationship_matrix
+
+  - caption: Correlation Between Variables
+    chapters:
+      - file: factor_analysis
+      - file: principal_component_analysis
   
   - caption: Fixed Effects Models
     chapters:
