@@ -23,6 +23,8 @@ jobs:
 
     - name: Build the book
       run: |
+        cp website/_config.yml .
+        cp website/_toc.yml .
         jupyter-book build .
 
     - name: GitHub Pages action
