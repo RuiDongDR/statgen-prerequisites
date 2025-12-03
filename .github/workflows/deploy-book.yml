@@ -18,12 +18,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install jupyter-book
+        pip install jupyter-book==1.0.4
         pip install ghp-import
 
     - name: Build the book
       run: |
-        jupyter book build --html
+        jupyter book build . --config website/_config.yml --toc website/_toc.yml
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1

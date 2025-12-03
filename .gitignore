@@ -67,3 +67,4 @@ pixi.lock
 pixi.toml
 
 cartoons/
+.vscode
