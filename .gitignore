@@ -65,3 +65,5 @@ _build/
 comments.md
 pixi.lock
 pixi.toml
+
+cartoons/
