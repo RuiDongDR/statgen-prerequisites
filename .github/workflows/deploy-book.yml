@@ -23,9 +23,7 @@ jobs:
 
     - name: Build the book
       run: |
-        cp website/_config.yml .
-        cp website/_toc.yml .
-        jupyter-book build .
+        jupyter-book build website
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1
