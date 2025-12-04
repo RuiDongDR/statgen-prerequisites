@@ -1,0 +1,1022 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Meta-Analysis Random Effect &#8212; Statistical backgrounds for gene mapping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'meta_analysis_random_effect';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Likelihood" href="likelihood.html" />
+    <link rel="prev" title="Meta-Analysis Fixed Effect" href="meta_analysis_fixed_effect.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for gene mapping</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notations.html">Notations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="factor_analysis.html">Factor Analysis</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="principal_component_analysis.html">Principal Component Analysis (PCA)</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="random_effect.html">Random Effect</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effect</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meta-Analysis Random Effect</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_frequentist.html">Bayesian and Frequentist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="p_value.html">p-value and Bayesian Hypothesis Testing</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multiple Bayesian models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/meta_analysis_random_effect.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Meta-Analysis Random Effect</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Meta-Analysis Random Effect</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-heterogeneity">What is Heterogeneity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-heterogeneity">Measuring Heterogeneity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random Effect Model</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="meta-analysis-random-effect">
+<h1>Meta-Analysis Random Effect<a class="headerlink" href="#meta-analysis-random-effect" title="Link to this heading">#</a></h1>
+<p>Random-effects meta-analysis <strong>accounts for variability</strong> in effect sizes across studies by assuming each study estimates a different effect <strong>drawn from a shared distribution</strong>, thus modeling both within-study error and between-study heterogeneity.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="Fig" src="_images/Slide18.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>In random-effects meta-analysis, we assume that the true effect sizes vary across studies. The weighted mean effect size is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta} = \frac{\sum_{k=1}^{K} w_k^* \hat{\beta}_k}{\sum_{k=1}^{K} w_k^*}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}\)</span> is the combined effect estimate across all studies</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}_k\)</span> is the effect estimate from study <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_k^* = \frac{1}{\text{SE}_k^2 + \tau^2}\)</span> is the random-effects weight for study <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau^2\)</span> is the between-study variance (heterogeneity)</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span> is the number of studies</p></li>
+</ul>
+<p>The key difference from fixed-effects is that weights now include <span class="math notranslate nohighlight">\(\tau^2\)</span>, which accounts for true heterogeneity between studies.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<section id="what-is-heterogeneity">
+<h2>What is Heterogeneity?<a class="headerlink" href="#what-is-heterogeneity" title="Link to this heading">#</a></h2>
+<p><strong>Heterogeneity</strong> refers to the variability in effect sizes across different studies beyond what we’d expect from random sampling error alone. In other words, are the studies telling us the same story, or are they finding genuinely different effects?</p>
+<p><strong>Why does heterogeneity matter?</strong></p>
+<ul class="simple">
+<li><p>If studies are consistent (low heterogeneity), we can confidently combine them</p></li>
+<li><p>If studies are inconsistent (high heterogeneity), we need to account for this variation in our analysis</p></li>
+</ul>
+<p><strong>Sources of heterogeneity:</strong></p>
+<ul class="simple">
+<li><p>Different populations (age, ethnicity, health status)</p></li>
+<li><p>Different study designs or measurement methods</p></li>
+<li><p>Different environmental contexts</p></li>
+</ul>
+</section>
+<section id="measuring-heterogeneity">
+<h2>Measuring Heterogeneity<a class="headerlink" href="#measuring-heterogeneity" title="Link to this heading">#</a></h2>
+<p><strong><span class="math notranslate nohighlight">\(I^2\)</span> statistic</strong>: The most intuitive measure - tells us what percentage of the observed variation comes from real differences between studies rather than random chance.</p>
+<div class="math notranslate nohighlight">
+\[
+I^2 = \max\left(0, \frac{Q - (K-1)}{Q} \times 100\%\right)
+\]</div>
+<p><strong>Interpretation:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I^2 = 0\%\)</span>: Studies are consistent - variation is just due to random sampling</p></li>
+<li><p><span class="math notranslate nohighlight">\(I^2 = 25\%\)</span>: Low heterogeneity - studies are mostly similar</p></li>
+<li><p><span class="math notranslate nohighlight">\(I^2 = 50\%\)</span>: Moderate heterogeneity - some real differences between studies</p></li>
+<li><p><span class="math notranslate nohighlight">\(I^2 = 75\%\)</span>: High heterogeneity - studies are finding quite different effects</p></li>
+</ul>
+<p><strong>Example:</strong> If <span class="math notranslate nohighlight">\(I^2 = 60\%\)</span>, this means 60% of the variation we see across studies reflects real differences in effect sizes, while only 40% is due to random sampling error.</p>
+</section>
+<section id="random-effect-model">
+<h2>Random Effect Model<a class="headerlink" href="#random-effect-model" title="Link to this heading">#</a></h2>
+<p><strong>The Problem:</strong> When studies show heterogeneity, we can’t assume they’re all estimating the same true effect.</p>
+<p><strong>The Solution:</strong> Assume each study estimates its own true effect, but these true effects come from a common distribution.</p>
+<p><strong>Assumption</strong>: True effects follow a distribution</p>
+<div class="math notranslate nohighlight">
+\[
+\beta_k \sim N(\beta, \tau^2)
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> = mean effect across all possible studies (what we want to estimate)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau^2\)</span> = between-study variance (how much true effects vary across studies)</p></li>
+<li><p>Each study <span class="math notranslate nohighlight">\(k\)</span> has its own true effect <span class="math notranslate nohighlight">\(\beta_k\)</span></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Fixed Effect</p></th>
+<th class="head"><p>Random Effect</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Assumption</strong></p></td>
+<td><p>All studies estimate the <strong>same true effect</strong></p></td>
+<td><p>Studies estimate <strong>different true effects</strong> from a distribution</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Weight Formula</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{\text{SE}_k^2}\)</span> (only within-study variance)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{\text{SE}_k^2 + \tau^2}\)</span> (within-study + between-study variance)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>When to Use</strong></p></td>
+<td><p>Studies are very similar in design and population</p></td>
+<td><p>Significant heterogeneity between studies</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Results</strong></p></td>
+<td><p>Narrower confidence intervals, give the effect in the populations</p></td>
+<td><p>Wider confidence intervals, give the average effect across broader populations</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="related-topics">
+<h1>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/random_effect.html">random effect</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/meta_analysis_fixed_effects.html">meta-analysis fixed effects</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>Imagine you’re trying to understand the effect of a genetic variant across different populations. You have two studies: one from a European population and another from an African population. Both studies found significant associations, but the effect sizes look different.</p>
+<p>The question is: <em>Are these studies measuring the same biological effect, just with some random variation due to sampling? Or do these populations truly have different effect sizes for biological reasons?</em></p>
+<p>This is where the choice between fixed-effects and random-effects meta-analysis becomes crucial. If the populations truly differ (maybe due to different genetic backgrounds or environmental factors), then we shouldn’t assume they share the same effect size. Instead, we should model each study as having its own true effect, drawn from a distribution of possible effects.</p>
+<p>We’ll simulate this scenario where two studies have genuinely different true effect sizes, then see how random-effects meta-analysis handles this heterogeneity compared to a naive approach that ignores it. The key insight is: <em>When studies are heterogeneous, how do we properly account for both within-study uncertainty AND between-study variation?</em></p>
+<p>We first generate the effects for the two studies from a distribution (rather than assigning a fixed value), and assign the variance between two studies:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">18</span><span class="p">)</span>
+
+<span class="c1"># Simulate 2 diverse cohorts where TRUE EFFECT SIZES are drawn from a distribution</span>
+<span class="n">K</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="c1"># Number of studies</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5000</span><span class="p">,</span><span class="w"> </span><span class="m">8000</span><span class="p">)</span><span class="w">  </span><span class="c1"># Different sample sizes</span>
+
+<span class="c1"># Different MAFs reflecting population diversity</span>
+<span class="n">mafs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.40</span><span class="p">)</span>
+
+<span class="c1"># RANDOM EFFECTS MODEL: True effect sizes drawn from distribution</span>
+<span class="c1"># This is the key difference - betas are RANDOM, not fixed</span>
+<span class="n">beta_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.0</span><span class="w">      </span><span class="c1"># Mean effect size across all possible studies</span>
+<span class="n">tau_squared_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.3</span><span class="w">  </span><span class="c1"># True between-study variance</span>
+
+<span class="c1"># Draw true effect sizes from distribution</span>
+<span class="n">true_betas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta_mean</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">tau_squared_true</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we generate the data for each study and create a summary table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate data for each study</span>
+<span class="n">studies_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">()</span>
+<span class="kr">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Generate genotypes</span>
+<span class="w">  </span><span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">mafs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Generate phenotypes using the RANDOM true effect</span>
+<span class="w">  </span><span class="n">phenotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">true_betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">genotypes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Run regression</span>
+<span class="w">  </span><span class="n">lm_result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">phenotypes</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">genotypes</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Store results</span>
+<span class="w">  </span><span class="n">studies_data</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">    </span><span class="n">study_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">,</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">maf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mafs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">true_beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_betas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+<span class="w">    </span><span class="n">observed_beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">coef</span><span class="p">(</span><span class="n">lm_result</span><span class="p">)[</span><span class="s">&quot;genotypes&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">lm_result</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="s">&quot;genotypes&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Std. Error&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create summary table</span>
+<span class="n">studies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Study</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">K</span><span class="p">,</span>
+<span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">studies_data</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">n</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MAF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">studies_data</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">maf</span><span class="p">),</span>
+<span class="w">  </span><span class="n">True_Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">studies_data</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">true_beta</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Observed_Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">studies_data</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">observed_beta</span><span class="p">),</span>
+<span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">studies_data</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">se</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">studies</span><span class="o">$</span><span class="n">P_Value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pnorm</span><span class="p">(</span><span class="o">-</span><span class="nf">abs</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Observed_Beta</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first assess the heterogeneity for this meta-analysis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate inverse variance weights for heterogeneity testing</span>
+<span class="n">w</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="o">^</span><span class="m">2</span>
+<span class="n">studies</span><span class="o">$</span><span class="n">Weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+<span class="c1"># Calculate naive weighted average (fixed-effects estimate)</span>
+<span class="n">beta_naive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Observed_Beta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+<span class="c1"># Calculate Q statistic (test for heterogeneity)</span>
+<span class="n">Q</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Observed_Beta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta_naive</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span>
+<span class="n">p_heterogeneity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">pchisq</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># I^2 statistic (percentage of variation due to heterogeneity)</span>
+<span class="n">I_squared</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Q</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Heterogeneity Statistics:\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Q statistic:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Degrees of freedom:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;P-value for heterogeneity:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">p_heterogeneity</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;I^2 statistic:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">I_squared</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%\n\n&quot;</span><span class="p">)</span>
+
+<span class="kr">if</span><span class="p">(</span><span class="n">I_squared</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">25</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;HETEROGENEITY DETECTED - Random-effects model is appropriate!\n&quot;</span><span class="p">)</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Low heterogeneity detected\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Heterogeneity Statistics:
+Q statistic: 61.44 
+Degrees of freedom: 1 
+P-value for heterogeneity: 0 
+I^2 statistic: 98.4 %
+
+HETEROGENEITY DETECTED - Random-effects model is appropriate!
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now we conduct the meta-analysis for the two studies:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate between-study variance (tau^2) using DerSimonian-Laird method</span>
+<span class="n">sum_w</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">sum_w_squared</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">tau_squared_est</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">sum_w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sum_w_squared</span><span class="o">/</span><span class="n">sum_w</span><span class="p">))</span>
+
+<span class="c1"># Calculate random-effects weights</span>
+<span class="n">w_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tau_squared_est</span><span class="p">)</span>
+<span class="n">studies</span><span class="o">$</span><span class="n">Weight_Random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">w_random</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w_random</span><span class="p">)</span>
+
+<span class="c1"># Random-effects estimate</span>
+<span class="n">beta_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Observed_Beta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_random</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w_random</span><span class="p">)</span>
+<span class="n">se_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">w_random</span><span class="p">))</span>
+<span class="n">z_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta_random</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">se_random</span>
+<span class="n">p_random</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pnorm</span><span class="p">(</span><span class="o">-</span><span class="nf">abs</span><span class="p">(</span><span class="n">z_random</span><span class="p">))</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Random-Effects Meta-Analysis Results:\n&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Estimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">beta_random</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">se_random</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Z_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">z_random</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">P_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="n">p_random</span><span class="p">,</span><span class="w"> </span><span class="n">scientific</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random-Effects Meta-Analysis Results:
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 1 x 4</caption>
+<thead>
+	<tr><th scope=col>Estimate</th><th scope=col>SE</th><th scope=col>Z_score</th><th scope=col>P_value</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1.7491</td><td>0.3322</td><td>5.2659</td><td>1.4e-07</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Let’s also look at the weights with and without considering heterogeneity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare weights with and without tau^2</span>
+<span class="n">weight_comparison</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Study</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">K</span><span class="p">,</span>
+<span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">N</span><span class="p">,</span>
+<span class="w">  </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">SE</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Weight_Fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Weight_Random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight_Random</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">  </span><span class="n">Difference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">studies</span><span class="o">$</span><span class="n">Weight_Random</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">studies</span><span class="o">$</span><span class="n">Weight</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">weight_comparison</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 2 x 6</caption>
+<thead>
+	<tr><th scope=col>Study</th><th scope=col>N</th><th scope=col>SE</th><th scope=col>Weight_Fixed</th><th scope=col>Weight_Random</th><th scope=col>Difference</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>5000</td><td>0.0697</td><td>0.324</td><td>0.497</td><td> 0.173</td></tr>
+	<tr><td>2</td><td>8000</td><td>0.0482</td><td>0.676</td><td>0.503</td><td>-0.173</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="meta_analysis_fixed_effect.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Meta-Analysis Fixed Effect</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="likelihood.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Likelihood</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Meta-Analysis Random Effect</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-heterogeneity">What is Heterogeneity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-heterogeneity">Measuring Heterogeneity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effect-model">Random Effect Model</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang, Rui Dong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1240 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Random Effect &#8212; Statistical backgrounds for gene mapping</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'random_effect';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proportion of Variance Explained and Heritability" href="proportion_of_variance_explained.html" />
+    <link rel="prev" title="Summary Statistics" href="summary_statistics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Statistical backgrounds for gene mapping</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Popular Topics and Related Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notations.html">Notations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="popular_topics.html">Popular Topics in Statistical Genetics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genotype_coding.html">Genotype Coding</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="minor_allele_frequency.html">Minor Allele Frequency</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Hardy_Weinberg_equilibrium.html">Hardy-Weinberg Equilibrium</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium.html">Linkage Disequilibrium</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="linkage_disequilibrium_score.html">Linkage Disequilibrium Score</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Individuals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genetic_relationship_matrix.html">Genetic Relationship Matrix</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Correlation Between Variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="factor_analysis.html">Factor Analysis</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="principal_component_analysis.html">Principal Component Analysis (PCA)</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fixed Effects Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ordinary_least_squares.html">Ordinary Least Squares</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="odds_ratio.html">Odds Ratio</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="marginal_joint_effects.html">Marginal and Joint Effects</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary_statistics.html">Summary Statistics</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Effects Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Random Effect</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proportion_of_variance_explained.html">Proportion of Variance Explained and Heritability</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Mixed Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linear_mixed_model.html">Linear Mixed Model</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Covariates</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confounder.html">Confounder</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="collider.html">Collider</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">Mediator</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Meta-analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_fixed_effect.html">Meta-Analysis Fixed Effect</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="meta_analysis_random_effect.html">Meta-Analysis Random Effect</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="likelihood.html">Likelihood</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="maximum_likelihood_estimation.html">Maximum Likelihood Estimation</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="likelihood_ratio.html">Likelihood Ratio</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Versus Frequentist</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_frequentist.html">Bayesian and Frequentist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_rule.html">Bayes Rule</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayes_factor.html">Bayes Factor</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="p_value.html">p-value and Bayesian Hypothesis Testing</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Model</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_normal_mean_model.html">Bayesian Normal Mean Model</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_multivariate_normal_mean_model.html">Bayesian Multivariate Normal Mean Model</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multiple Bayesian models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_model_comparison.html">Bayesian Model Comparison</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bayesian_mixture_model.html">Bayesian Mixture Model</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/random_effect.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Random Effect</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Random Effect</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-model">Fixed Effects Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-model">Random Effects Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insight">Key Insight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-individual-level-random-effects-simulation">Example 1 – Individual-Level Random Effects Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-apoe-varepsilon4-and-alzheimer-s-disease">Example 2 – APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> and Alzheimer’s Disease</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="random-effect">
+<h1>Random Effect<a class="headerlink" href="#random-effect" title="Link to this heading">#</a></h1>
+<p>A random effect reflects our <strong>uncertainty</strong> when we <strong>haven’t conditioned on all the relevant factors</strong> - if we could measure and control for everything that matters, the effect would be fixed, but since we can’t, we model our incomplete knowledge as <strong>randomness</strong>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="graphical-summary">
+<h1>Graphical Summary<a class="headerlink" href="#graphical-summary" title="Link to this heading">#</a></h1>
+<p><img alt="Fig" src="_images/Slide11.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-formula">
+<h1>Key Formula<a class="headerlink" href="#key-formula" title="Link to this heading">#</a></h1>
+<p>Under the single marker linear regression, instead of the fixed value of <span class="math notranslate nohighlight">\(\beta\)</span> as we discussed in <a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/ordinary_least_squares.html">OLS</a>, in the <strong>random effect model</strong>, we acknowledge that we haven’t conditioned on all relevant factors that influence the genetic effect:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y}=\mathbf{X}\beta+\boldsymbol{\epsilon}, \beta \sim N(\beta_0, \sigma_0^2)
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of trait values for <span class="math notranslate nohighlight">\(N\)</span> individuals</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of the genotype vector for a single variant across <span class="math notranslate nohighlight">\(N\)</span> individuals</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the random effect that captures our uncertainty due to incomplete conditioning - if we could measure all factors affecting this variant’s impact (population background, environmental interactions, etc.), <span class="math notranslate nohighlight">\(\beta\)</span> would be fixed, but since we can’t, we model it as drawn from <span class="math notranslate nohighlight">\(N(\beta_0, \sigma_0^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the <span class="math notranslate nohighlight">\(N \times 1\)</span> vector of error terms for <span class="math notranslate nohighlight">\(N\)</span> individuals and <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
+<p>The core question is not whether we <em>should</em> condition on all factors, but that we <strong>cannot</strong> - there are always unknown factors affecting genetic effects, making random effects the realistic choice.</p>
+<section id="fixed-effects-model">
+<h2>Fixed Effects Model<a class="headerlink" href="#fixed-effects-model" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X}\beta + \boldsymbol{\epsilon}
+\]</div>
+<p>Assumes <span class="math notranslate nohighlight">\(\beta\)</span> is constant across all contexts - this would only be true if we could condition on every single factor that influences the genetic effect:</p>
+<ul class="simple">
+<li><p>Population structure, environmental exposures, gene-gene interactions, developmental timing</p></li>
+<li><p><strong>Problem</strong>: There are always unknown factors we haven’t even discovered yet</p></li>
+<li><p><strong>Key insight</strong>: When we can condition on most major factors, <strong>fixed effects models are simpler and more powerful</strong>. The justification depends on <strong>careful covariate selection</strong>.</p></li>
+<li><p><strong>Flexibility</strong>: GWAS summary statistics from fixed effects can also be reanalyzed using <strong>random effects models</strong> (including Bayesian mixture approaches) to account for heterogeneity when needed.</p></li>
+</ul>
+</section>
+<section id="random-effects-model">
+<h2>Random Effects Model<a class="headerlink" href="#random-effects-model" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X}\beta + \boldsymbol{\epsilon}, \quad \beta \sim N(\beta_0, \sigma_0^2)
+\]</div>
+<p>Acknowledges the reality that <span class="math notranslate nohighlight">\(\beta\)</span> varies because <strong>there will always be unmeasured factors</strong>:</p>
+<ul class="simple">
+<li><p>Environmental factors we didn’t think to measure</p></li>
+<li><p>Population stratification we haven’t detected</p></li>
+<li><p>Gene-environment interactions we don’t know exist</p></li>
+<li><p>Biological processes we haven’t discovered yet</p></li>
+</ul>
+</section>
+<section id="key-insight">
+<h2>Key Insight<a class="headerlink" href="#key-insight" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\text{Perfect conditioning} \rightarrow \text{Fixed effects}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{Incomplete conditioning} \rightarrow \text{Random effects}
+\]</div>
+<p>However,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Unknown factors always exist} \rightarrow \text{Random effects are more reasonable}
+\]</div>
+<p>In practice, we can never achieve complete conditioning because we don’t even know what all the relevant factors are. Random effects models honestly acknowledge this fundamental limitation - there’s always something affecting genetic effects that we haven’t accounted for.</p>
+</section>
+<section id="related-topics">
+<h2>Related Topics<a class="headerlink" href="#related-topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/ordinary_least_squares.html">ordinary least squares</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/summary_statistics.html">summary statistics</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/confounder.html">confounder</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/Bayes_rule.html">Bayes rule</a></p></li>
+<li><p><a class="reference external" href="https://statfungen.github.io/statgen-prerequisites/Bayesian_mixture_model.html">Bayesian mixture model</a></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<section id="example-1-individual-level-random-effects-simulation">
+<h2>Example 1 – Individual-Level Random Effects Simulation<a class="headerlink" href="#example-1-individual-level-random-effects-simulation" title="Link to this heading">#</a></h2>
+<p>What happens when we acknowledge that genetic effects aren’t the same for everyone? Let’s see this in action using the same 5 individuals, but now allowing each person to have their own unique genetic effect size.</p>
+<p>Instead of assuming one fixed effect for everyone, we’ll draw each person’s genetic effect from a distribution. This captures the reality that the same variant might have slightly different impacts across individuals due to all the factors we can’t measure or don’t even know about.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">11</span><span class="p">)</span>
+<span class="c1"># Define genotypes for 5 individuals at 3 variants</span>
+<span class="c1"># These represent actual alleles at each position</span>
+<span class="c1"># For example, Individual 1 has genotypes: CC, CT, AT</span>
+<span class="n">genotypes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AT&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 1</span>
+<span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 2</span>
+<span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 3</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AA&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Individual 4</span>
+<span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TT&quot;</span><span class="w">   </span><span class="c1"># Individual 5</span>
+<span class="p">)</span>
+<span class="c1"># Reshape into a matrix</span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="n">geno_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Variant&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">alt_alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert to raw genotype matrix using the additive / dominant / recessive model</span>
+<span class="n">Xraw_additive</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="c1"># dount number of non-reference alleles</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">alleles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">strsplit</span><span class="p">(</span><span class="n">geno_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="w">    </span><span class="n">Xraw_additive</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">alleles</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alt_alleles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">Xraw_additive</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s assume that the first variant is the true causal variant and its <span class="math notranslate nohighlight">\(\beta\)</span> comes from a normal distribution <span class="math notranslate nohighlight">\(N(0,1)\)</span>, while the error term comes from a distribution <span class="math notranslate nohighlight">\(N(0,0.3)\)</span>, then the observed trait value would be:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="n">epsilon</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">epsilon</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here the beta actually comes from a distribution and has different values for each individuals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>-0.591031102584368</li><li>0.026594369016167</li><li>-1.51655309708187</li><li>-1.36265334929581</li><li>1.17848915603162</li></ol>
+</div></div>
+</div>
+</section>
+<section id="example-2-apoe-varepsilon4-and-alzheimer-s-disease">
+<h2>Example 2 – APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> and Alzheimer’s Disease<a class="headerlink" href="#example-2-apoe-varepsilon4-and-alzheimer-s-disease" title="Link to this heading">#</a></h2>
+<p>Let’s use a real-world example to understand when genetic effects should be treated as fixed versus random. Consider the APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> variant, one of the strongest known genetic risk factors for Alzheimer’s disease.</p>
+<p><strong>Why APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> Effects Vary?</strong></p>
+<p>Imagine you’re studying APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span>’s effect on Alzheimer’s risk. The key insight is that this effect isn’t the same for everyone - it depends on factors we may or may not have measured.</p>
+<p><strong>When would APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> have a “fixed” effect?</strong> Only if we’ve conditioned on all the key factors:</p>
+<ul class="simple">
+<li><p><strong>Ancestry</strong>: European populations show strong APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects, while some other populations show weaker associations</p></li>
+<li><p><strong>Age</strong>: APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> barely affects risk before age 65, but has large effects in older adults</p></li>
+<li><p><strong>Sex</strong>: Alzheimer’s affects women twice as often as men, and APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects differ by sex</p></li>
+<li><p>…</p></li>
+</ul>
+<p>If we study only elderly European women (and very likely a lot of other factors fixed), we might see a consistent APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effect - making it reasonable to treat as “fixed.”</p>
+<p><strong>But what happens when we don’t condition properly?</strong> If our study includes mixed ancestry, all ages, and both sexes without accounting for these differences, we may see wildly varying APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects:</p>
+<ul class="simple">
+<li><p>Europeans: large effect size</p></li>
+<li><p>Hispanics: moderate effect size</p></li>
+<li><p>Young people: tiny effect size</p></li>
+<li><p>Elderly: large effect size</p></li>
+<li><p>And so on…</p></li>
+</ul>
+<p>Now APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span>’s effect looks “random” - but it’s not truly random, it’s just that we haven’t conditioned on the factors that determine the effect size.</p>
+<p>In this R example we just assume that there is no other factor (which is very unlikely to be true) in this model, and conduct two analysis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear environment and set seed for reproducibility</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">11</span><span class="p">)</span>
+
+<span class="c1"># Create a diverse study population</span>
+<span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span>
+
+<span class="c1"># Generate population characteristics</span>
+<span class="n">ancestry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;European&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;African&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Asian&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">))</span>
+<span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">50</span><span class="o">:</span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">))</span>
+
+<span class="c1"># Generate APOEe4 genotypes (0, 1, or 2 copies)</span>
+<span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
+
+<span class="c1"># The &quot;true&quot; APOEe4 effect depends on all these factors</span>
+<span class="c1"># Base effect sizes by ancestry</span>
+<span class="n">base_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;European&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">              </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span>
+<span class="w">              </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;African&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">0.9</span><span class="p">)))</span>
+
+<span class="c1"># Age modifier (stronger effect in elderly)</span>
+<span class="n">age_modifier</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">65</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
+
+<span class="c1"># Sex modifier (stronger in females)</span>
+<span class="n">sex_modifier</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">sex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1.3</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="c1"># Calculate individual-specific effect sizes</span>
+<span class="n">true_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">base_effect</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">age_modifier</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sex_modifier</span>
+
+<span class="c1"># Generate Alzheimer&#39;s risk (log-odds scale)</span>
+<span class="n">risk_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">true_effect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+
+<span class="c1"># Create dataframe</span>
+<span class="n">study_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ancestry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ancestry</span><span class="p">,</span>
+<span class="w">  </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span>
+<span class="w">  </span><span class="n">APOEe4_copies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="p">,</span>
+<span class="w">  </span><span class="n">true_effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true_effect</span><span class="p">,</span>
+<span class="w">  </span><span class="n">risk_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">risk_score</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scenario 1: FIXED EFFECTS - Properly conditioned</span>
+<span class="c1"># Analyze only elderly European females (well-conditioned subset)</span>
+<span class="n">conditioned_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">subset</span><span class="p">(</span><span class="n">study_data</span><span class="p">,</span><span class="w"> </span><span class="n">ancestry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;European&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Female&quot;</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== FIXED EFFECTS SCENARIO ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Analyzing elderly European females only\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample size:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">conditioned_data</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="n">fixed_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">risk_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conditioned_data</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;APOEe4 effect estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">fixed_model</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Standard error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">fixed_model</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Effect variation (SD across individuals):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">conditioned_data</span><span class="o">$</span><span class="n">true_effect</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== FIXED EFFECTS SCENARIO ===
+Analyzing elderly European females only
+Sample size: 135 
+APOEe4 effect estimate: 2.399 
+Standard error: 0.066 
+Effect variation (SD across individuals): 0 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scenario 2: RANDOM EFFECTS - Poorly conditioned  </span>
+<span class="c1"># Analyze the full diverse population without conditioning</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;=== RANDOM EFFECTS SCENARIO ===\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Analyzing full diverse population without conditioning\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Sample size:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">study_data</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="n">unconditioned_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">risk_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">APOEe4_copies</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">study_data</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;APOEe4 effect estimate:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">unconditioned_model</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Standard error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">unconditioned_model</span><span class="p">)</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Effect variation (SD across individuals):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">study_data</span><span class="o">$</span><span class="n">true_effect</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== RANDOM EFFECTS SCENARIO ===
+Analyzing full diverse population without conditioning
+Sample size: 1000 
+APOEe4 effect estimate: 1.076 
+Standard error: 0.038 
+Effect variation (SD across individuals): 0.738 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the heterogeneity we&#39;re missing</span>
+<span class="n">effect_by_group</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="n">true_effect</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">ancestry</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">65</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                           </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">study_data</span><span class="p">,</span><span class="w"> </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">effect_by_group</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Ancestry&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sex&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Elderly&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mean_Effect&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">effect_by_group</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 16 x 4</caption>
+<thead>
+	<tr><th scope=col>Ancestry</th><th scope=col>Sex</th><th scope=col>Elderly</th><th scope=col>Mean_Effect</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>African </td><td>Female</td><td>FALSE</td><td>0.234</td></tr>
+	<tr><td>Asian   </td><td>Female</td><td>FALSE</td><td>0.351</td></tr>
+	<tr><td>European</td><td>Female</td><td>FALSE</td><td>0.468</td></tr>
+	<tr><td>Hispanic</td><td>Female</td><td>FALSE</td><td>0.312</td></tr>
+	<tr><td>African </td><td>Male  </td><td>FALSE</td><td>0.180</td></tr>
+	<tr><td>Asian   </td><td>Male  </td><td>FALSE</td><td>0.270</td></tr>
+	<tr><td>European</td><td>Male  </td><td>FALSE</td><td>0.360</td></tr>
+	<tr><td>Hispanic</td><td>Male  </td><td>FALSE</td><td>0.240</td></tr>
+	<tr><td>African </td><td>Female</td><td> TRUE</td><td>1.170</td></tr>
+	<tr><td>Asian   </td><td>Female</td><td> TRUE</td><td>1.755</td></tr>
+	<tr><td>European</td><td>Female</td><td> TRUE</td><td>2.340</td></tr>
+	<tr><td>Hispanic</td><td>Female</td><td> TRUE</td><td>1.560</td></tr>
+	<tr><td>African </td><td>Male  </td><td> TRUE</td><td>0.900</td></tr>
+	<tr><td>Asian   </td><td>Male  </td><td> TRUE</td><td>1.350</td></tr>
+	<tr><td>European</td><td>Male  </td><td> TRUE</td><td>1.800</td></tr>
+	<tr><td>Hispanic</td><td>Male  </td><td> TRUE</td><td>1.200</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The ‘randomness’ isn’t truly random - it reflects our failure to condition on ancestry, age, and sex! But if we don’t measure and condition on these factors, the effect appears random from our perspective.</p>
+<p><strong>Even worse</strong>: There are always factors we don’t even know about yet. Maybe APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> effects also depend on:</p>
+<ul class="simple">
+<li><p>Specific dietary patterns we haven’t discovered</p></li>
+<li><p>Interactions with other genes we haven’t identified</p></li>
+<li><p>Environmental exposures we haven’t thought to measure</p></li>
+<li><p>Biological pathways we don’t understand yet</p></li>
+</ul>
+<p>This is why random effects models are often more realistic - they acknowledge that no matter how careful we are, there are always unmeasured factors creating heterogeneity in genetic effects. The “randomness” captures our incomplete knowledge, not true biological randomness.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="supplementary">
+<h1>Supplementary<a class="headerlink" href="#supplementary" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Graphical Summary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+
+<span class="c1"># Set up data for 5 individuals</span>
+<span class="n">individuals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span>
+<span class="n">fixed_effect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span><span class="w">  </span><span class="c1"># Same effect for all individuals</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+<span class="n">random_effects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">)</span><span class="w">  </span><span class="c1"># Random effects around 0.5</span>
+
+<span class="c1"># Create data frames</span>
+<span class="n">fixed_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">individual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">individuals</span><span class="p">,</span>
+<span class="w">  </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">fixed_effect</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">random_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">individual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">individuals</span><span class="p">,</span>
+<span class="w">  </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">random_effects</span>
+<span class="p">)</span>
+
+<span class="c1"># Fixed Effects Plot</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">fixed_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">individual</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">effect</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray40&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fixed_effect</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fixed_effect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">fontface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Genetic Effect&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Fixed Effects Model&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">()</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Random Effects Plot</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">random_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">individual</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">effect</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray40&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.55</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="m">0</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">fontface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Genetic Effect&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Random Effects Model&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">()</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Add distribution curve to random effects plot</span>
+<span class="n">x_curve</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="n">y_curve</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x_curve</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">)</span>
+<span class="c1"># Scale and shift the curve to fit on the right side (further away)</span>
+<span class="n">y_curve_scaled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">y_curve</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">y_curve</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">6.5</span><span class="w">  </span><span class="c1"># Scale to fit x-axis range, moved further right</span>
+
+<span class="n">curve_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_curve_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_curve</span><span class="p">)</span>
+
+<span class="c1"># Enhanced Random Effects Plot with distribution</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">random_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">individual</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">effect</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray40&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># Add distribution curve</span>
+<span class="w">  </span><span class="nf">geom_path</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curve_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w"> </span>
+<span class="w">            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;purple&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.55</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="m">0</span><span class="p">]),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">fontface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="w"> </span><span class="o">%~%</span><span class="w"> </span><span class="nf">N</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="n">sigma</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;purple&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">fontface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Individual&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Genetic Effect&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Random Effects Model&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">8.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">()</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in is.na(x):
+&quot;is.na() applied to non-(list or vector) of type &#39;expression&#39;&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/580965c019cb89eebf06e58c58eb4ef65f830f4843313bb07c7bf5274ea40859.png"><img alt="_images/580965c019cb89eebf06e58c58eb4ef65f830f4843313bb07c7bf5274ea40859.png" src="_images/580965c019cb89eebf06e58c58eb4ef65f830f4843313bb07c7bf5274ea40859.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in is.na(x):
+&quot;is.na() applied to non-(list or vector) of type &#39;expression&#39;&quot;
+Warning message in is.na(x):
+&quot;is.na() applied to non-(list or vector) of type &#39;expression&#39;&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/a18ce1b1623b20940cbc447be7cb59764bd2dcee0776e473fb2e64b0a7c01327.png"><img alt="_images/a18ce1b1623b20940cbc447be7cb59764bd2dcee0776e473fb2e64b0a7c01327.png" src="_images/a18ce1b1623b20940cbc447be7cb59764bd2dcee0776e473fb2e64b0a7c01327.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save individual plots</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;./cartoons/random_effects_fixed.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+
+<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;./cartoons/random_effects_random.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;transparent&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in is.na(x):
+&quot;is.na() applied to non-(list or vector) of type &#39;expression&#39;&quot;
+Warning message in is.na(x):
+&quot;is.na() applied to non-(list or vector) of type &#39;expression&#39;&quot;
+Warning message in is.na(x):
+&quot;is.na() applied to non-(list or vector) of type &#39;expression&#39;&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="summary_statistics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Summary Statistics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="proportion_of_variance_explained.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proportion of Variance Explained and Heritability</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Random Effect</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-summary">Graphical Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-formula">Key Formula</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-details">Technical Details</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-model">Fixed Effects Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-model">Random Effects Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insight">Key Insight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-individual-level-random-effects-simulation">Example 1 – Individual-Level Random Effects Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-apoe-varepsilon4-and-alzheimer-s-disease">Example 2 – APOE <span class="math notranslate nohighlight">\(\varepsilon4\)</span> and Alzheimer’s Disease</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary">Supplementary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Graphical Summary</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gao Wang, Rui Dong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
